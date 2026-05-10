@@ -1,0 +1,80 @@
+# --------------------------------------------------------------
+# Python
+# --------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+wheels/
+*.egg-info/
+.eggs/
+
+# --------------------------------------------------------------
+# Virtual environments
+# --------------------------------------------------------------
+.venv/
+venv/
+env/
+ENV/
+
+# --------------------------------------------------------------
+# Jupyter
+# --------------------------------------------------------------
+.ipynb_checkpoints/
+*.nbconvert.ipynb
+
+# --------------------------------------------------------------
+# Datos crudos pesados (Kaggle) — el dataset original NO se sube
+# --------------------------------------------------------------
+data/raw/*.csv
+data/raw/*.xlsx
+
+# Sí mantener el .gitkeep para conservar la estructura
+!data/raw/.gitkeep
+
+# NOTA: data/processed/fraud_clean.csv y models/*.pkl SÍ se incluyen
+# en el repositorio porque son necesarios para que la app funcione
+# en deploys (Streamlit Cloud, Heroku, etc.) sin tener que reentrenar.
+
+# --------------------------------------------------------------
+# Secretos y configuración local
+# --------------------------------------------------------------
+.env
+.env.local
+.streamlit/secrets.toml
+
+# --------------------------------------------------------------
+# IDE y editores
+# --------------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# --------------------------------------------------------------
+# OS
+# --------------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --------------------------------------------------------------
+# Logs y temporales
+# --------------------------------------------------------------
+*.log
+.cache/
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# --------------------------------------------------------------
+# Otros
+# --------------------------------------------------------------
+.lock
+CACHEDIR.TAG
