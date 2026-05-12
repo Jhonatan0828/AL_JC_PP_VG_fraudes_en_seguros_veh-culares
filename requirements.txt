@@ -41,7 +41,7 @@ openpyxl>=3.1
 # Dependencias de desarrollo (opcional)
 # =============================================================
 # Instalar con:  pip install -e ".[dev]"
-# pytest>=7.4
-# pytest-cov>=4.1
-# ruff>=0.1.0
-# mypy>=1.5
+pytest>=7.4
+pytest-cov>=4.1
+ruff>=0.1.0
+mypy>=1.5
