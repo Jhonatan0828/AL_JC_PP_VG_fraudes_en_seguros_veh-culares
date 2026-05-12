@@ -7,8 +7,8 @@ Universidad de Medellín — Proyecto académico de Ciencia de Datos.
 """
 import streamlit as st
 
-from src.fraud_detection.data_loader import load_artifacts, load_clean_dataset
-from src.fraud_detection.pages import eda, home, performance, prediction
+from src.data_loader import load_artifacts, load_clean_dataset
+from src.pages import eda, home, performance, prediction
 
 
 def main() -> None:

@@ -5,10 +5,10 @@ Ejecutar:  pytest tests/
 import pandas as pd
 import pytest
 
-from src.fraud_detection.mappings import (
+from src.mappings import (
     EDA_FILTERS, ORDINAL_MAPPINGS, TOP_PREDICTORS,
 )
-from src.fraud_detection.prediction import (
+from src.prediction import (
     build_input_dataframe, detect_risk_factors,
 )
 
