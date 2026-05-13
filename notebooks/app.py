@@ -86,16 +86,30 @@ FILTROS_EDA = {
 # --------------------------------------------------------------
 @st.cache_resource
 def load_artifacts():
-    meta = joblib.load("model_metadata.pkl")
+    import os
+    # 1. Buscar la metadata (intenta en raíz y luego en models/)
+    meta_path = "model_metadata.pkl" if os.path.exists("model_metadata.pkl") else "models/model_metadata.pkl"
+    if not os.path.exists(meta_path):
+        raise FileNotFoundError(f"No se encontró model_metadata.pkl en la raíz ni en models/")
+    
+    meta = joblib.load(meta_path)
     models_dict = {}
-    if os.path.isdir("models"):
-        for name in meta.get('all_model_names', []):
-            safe_name = name.replace(' ', '_').replace('+', 'plus')
-            path = f"models/{safe_name}.pkl"
-            if os.path.exists(path):
-                models_dict[name] = joblib.load(path)
+    
+    # 2. Definir dónde buscar los modelos individuales
+    folder = "models" if os.path.isdir("models") else "."
+    
+    for name in meta.get('all_model_names', []):
+        safe_name = name.replace(' ', '_').replace('+', 'plus')
+        path = os.path.join(folder, f"{safe_name}.pkl")
+        if os.path.exists(path):
+            models_dict[name] = joblib.load(path)
+    
+    # 3. Fallback: Si no encontró los 4, cargar al menos el "mejor modelo"
     if not models_dict:
-        models_dict[meta['best_model_name']] = joblib.load("best_fraud_model.pkl")
+        best_path = "best_fraud_model.pkl" if os.path.exists("best_fraud_model.pkl") else "models/best_fraud_model.pkl"
+        if os.path.exists(best_path):
+            models_dict[meta['best_model_name']] = joblib.load(best_path)
+    
     return models_dict, meta
 
 @st.cache_data
